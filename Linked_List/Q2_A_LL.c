@@ -104,6 +104,36 @@ int main()
 void alternateMergeLinkedList(LinkedList *ll1, LinkedList *ll2)
 {
     /* add your code here */
+	if(ll2 == NULL || ll1 == NULL || ll1->size == 0 || ll2->size == 0) return;
+	ListNode* cur1 = ll1->head;
+	ListNode* prev1 = NULL;
+	ListNode* cur2;
+
+	while(cur1 != NULL && ll2->head != NULL){
+		
+		cur2 = ll2->head;
+		printf("%i\n", cur2->item);
+		if(cur2 == NULL) break;
+		ll2->head = ll2->head->next;
+		prev1 = cur1;					// cur1 == null 일때 마지막 노드 저장
+			// ll2 헤드 이동
+		cur2->next = cur1->next;
+		cur1->next = cur2;
+		cur1 = cur2->next;
+
+		ll2->size--;
+		ll1->size++;
+	}
+	if(cur1 == NULL){
+		if(cur2 != NULL){					// cur1이 짧아서 종료
+			//ll2->head = ll2->head->next;	// ll2 헤드 이동
+			cur2->next = NULL;
+			prev1->next = cur2;
+			ll2->size--;
+			ll1->size++;
+		}
+	}
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
