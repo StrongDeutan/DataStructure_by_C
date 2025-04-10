@@ -71,7 +71,7 @@ int main()
 		case 3:
 			printf("The resulting sorted linked list is: ");
 			printList(&ll);
-			removeAllItems(&ll);
+			// removeAllItems(&ll);
 			break;
 		case 0:
 			removeAllItems(&ll);
@@ -91,6 +91,85 @@ int main()
 int insertSortedLL(LinkedList *ll, int item)
 {
 	/* add your code here */
+	if(ll == NULL) return -1;
+
+	ListNode* new_node = malloc(sizeof(ListNode));
+	new_node->item = item;
+	new_node->next = NULL;	
+
+	// printf("%i",ll->size);
+
+	if(ll->size == 0){
+		ll->head = new_node;
+		ll->size++;
+		return 0;
+	}
+	else{
+		int idx = 0;
+		ListNode* cur_node = ll->head;
+		ListNode* prev_node = NULL;
+		while(cur_node != NULL && cur_node->item < item){
+			prev_node = cur_node;
+			// if(cur_node->next != NULL){
+			// 	printf("%i\n", cur_node->next->item);
+			// 	if(cur_node->next->item == item){
+			// 		printf("same value\n");
+			// 		free(new_node);
+			// 		return -1;
+			// 	}
+			// }
+			idx++;
+			cur_node = cur_node->next;
+		}
+		// printf("%i",idx);
+		if(cur_node == NULL){
+			if(prev_node->item == item){
+				// printf("%i\n", cur_node->next->item);
+				printf("same value\n");
+				free(new_node);
+				return -1;
+				
+			}
+			prev_node->next = new_node;
+			ll->size++;
+			return idx;
+		}
+		else{
+			if(prev_node == NULL){			// 맨앞
+				if(cur_node->item == item){
+					// printf("%i\n", cur_node->next->item);
+					printf("same value\n");
+					free(new_node);
+					return -1;
+					
+				}
+				new_node->next = cur_node;
+				ll->head = new_node;
+				ll->size++;
+				return 0;
+			}
+			else{
+				if(prev_node->item == item){
+					// printf("%i\n", cur_node->next->item);
+					printf("same value\n");
+					free(new_node);
+					return -1;
+				}
+				if(cur_node->item == item){
+					// printf("%i\n", cur_node->next->item);
+					printf("same value\n");
+					free(new_node);
+					return -1;
+				}
+				prev_node->next = new_node;
+				new_node->next = cur_node;
+				ll->size++;
+				return idx;
+			}
+		}
+
+	}
+	
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
