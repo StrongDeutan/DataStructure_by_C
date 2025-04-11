@@ -104,6 +104,25 @@ int main()
 int isStackPairwiseConsecutive(Stack *s)
 {
   /* add your code here */
+	LinkedList ll = s->ll;
+	if(ll.size % 2 == 1) return 0;
+	ListNode* cur = ll.head;
+	int return_val = 1;
+	while(cur != NULL){
+		int a = cur->item;
+		int b = cur->next->item;
+		if(a > b){
+			if(a-b != 1) return_val = 0;
+		}
+		else if(a < b){
+			if(b-a != 1) return_val = 0;
+		}
+		else{
+			return_val = 0;
+		}
+		cur = cur->next->next;
+	}
+	return return_val;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -253,4 +272,5 @@ void removeAllItems(LinkedList *ll)
 	}
 	ll->head = NULL;
 	ll->size = 0;
+
 }
