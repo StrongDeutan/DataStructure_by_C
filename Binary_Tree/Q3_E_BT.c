@@ -8,7 +8,7 @@ Purpose: Implementing the required functions for Question 3 */
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#define size 10000
 //////////////////////////////////////////////////////////////////////////////////
 typedef struct _btnode
 {
