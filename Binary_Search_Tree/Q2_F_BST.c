@@ -91,6 +91,10 @@ int main()
 void inOrderTraversal(BSTNode *root)
 {
 	 /* add your code here */
+	 if(root == NULL) return;
+	 inOrderTraversal(root->left);
+	 printf("%i ", root->item);
+	 inOrderTraversal(root->right);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
